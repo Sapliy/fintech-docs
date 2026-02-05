@@ -1,0 +1,14 @@
+{
+    "name": "@sapliyio/fintech-docs",
+    "version": "1.0.0",
+    "description": "Documentation site for Sapliy Fintech Ecosystem - powered by VitePress",
+    "private": true,
+    "scripts": {
+        "docs:dev": "vitepress dev",
+        "docs:build": "vitepress build",
+        "docs:preview": "vitepress preview"
+    },
+    "devDependencies": {
+        "vitepress": "^1.6.4"
+    }
+}

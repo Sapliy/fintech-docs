@@ -62,9 +62,11 @@ npm run docs:build
 
 Documentation contributions are welcome. See [CONTRIBUTING.md](https://github.com/Sapliy/fintech-ecosystem/blob/main/CONTRIBUTING.md).
 
-## Part of Sapliy Fintech Ecosystem
+## Architecture
 
-See [ARCHITECTURE.md](../ARCHITECTURE.md) for the full system overview.
+Key concepts: Organization → Zone → Event → Flow → Action.
+
+See [ARCHITECTURE.md](https://github.com/sapliy/fintech-ecosystem/blob/main/ARCHITECTURE.md) for details.
 
 ## License
 

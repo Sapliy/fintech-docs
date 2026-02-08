@@ -5,20 +5,20 @@ The official Node.js SDK for Sapliy Fintech.
 ## Installation
 
 ```bash
-npm install @sapliyio/fintech-sdk-node
+npm install @sapliyio/fintech
 ```
 
 ## Quick Start
 
 ```js
-import Sapliy from '@sapliyio/fintech-sdk-node';
+import Sapliy from "@sapliyio/fintech";
 
-const sapliy = new Sapliy('sk_test_xxx');
+const sapliy = new Sapliy("sk_test_xxx");
 
 // Create a payment intent
 const intent = await sapliy.paymentIntents.create({
   amount: 2000,
-  currency: 'usd'
+  currency: "usd",
 });
 
 console.log(intent.clientSecret);
@@ -27,11 +27,11 @@ console.log(intent.clientSecret);
 ## Configuration
 
 ```js
-const sapliy = new Sapliy('sk_test_xxx', {
-  apiVersion: '2024-01-01',
+const sapliy = new Sapliy("sk_test_xxx", {
+  apiVersion: "2024-01-01",
   timeout: 30000,
   maxRetries: 3,
-  baseUrl: 'https://api.sapliy.io' // Override for self-hosted
+  baseUrl: "https://api.sapliy.io", // Override for self-hosted
 });
 ```
 
@@ -43,9 +43,9 @@ const sapliy = new Sapliy('sk_test_xxx', {
 
 ```js
 const intent = await sapliy.paymentIntents.create({
-  amount: 5000,          // Amount in cents
-  currency: 'usd',
-  metadata: { orderId: 'order_123' }
+  amount: 5000, // Amount in cents
+  currency: "usd",
+  metadata: { orderId: "order_123" },
 });
 ```
 
@@ -53,7 +53,7 @@ const intent = await sapliy.paymentIntents.create({
 
 ```js
 const confirmed = await sapliy.paymentIntents.confirm(intent.id, {
-  paymentMethod: 'pm_card_visa'
+  paymentMethod: "pm_card_visa",
 });
 ```
 
@@ -63,8 +63,8 @@ const confirmed = await sapliy.paymentIntents.confirm(intent.id, {
 
 ```js
 const zone = await sapliy.zones.create({
-  name: 'Production',
-  mode: 'live'
+  name: "Production",
+  mode: "live",
 });
 ```
 
@@ -79,23 +79,23 @@ const zones = await sapliy.zones.list({ limit: 10 });
 #### Emit Event
 
 ```js
-await sapliy.events.emit('checkout.completed', {
-  orderId: 'order_123',
-  amount: 9900
+await sapliy.events.emit("checkout.completed", {
+  orderId: "order_123",
+  amount: 9900,
 });
 ```
 
 #### Stream Events
 
 ```js
-const stream = sapliy.events.stream({ zone: 'zone_abc' });
+const stream = sapliy.events.stream({ zone: "zone_abc" });
 
-stream.on('event', (event) => {
-  console.log('Event:', event.type, event.data);
+stream.on("event", (event) => {
+  console.log("Event:", event.type, event.data);
 });
 
-stream.on('error', (err) => {
-  console.error('Stream error:', err);
+stream.on("error", (err) => {
+  console.error("Stream error:", err);
 });
 ```
 
@@ -104,12 +104,12 @@ stream.on('error', (err) => {
 #### Verify Signature
 
 ```js
-import { verifyWebhookSignature } from '@sapliyio/fintech-sdk-node';
+import { verifyWebhookSignature } from "@sapliyio/fintech";
 
 const isValid = verifyWebhookSignature(
   req.body,
-  req.headers['x-sapliy-signature'],
-  'whsec_xxx'
+  req.headers["x-sapliy-signature"],
+  "whsec_xxx",
 );
 ```
 
@@ -134,13 +134,13 @@ try {
 The SDK includes full TypeScript definitions:
 
 ```ts
-import Sapliy, { PaymentIntent, Zone } from '@sapliyio/fintech-sdk-node';
+import Sapliy, { PaymentIntent, Zone } from "@sapliyio/fintech";
 
-const sapliy = new Sapliy('sk_test_xxx');
+const sapliy = new Sapliy("sk_test_xxx");
 
 const intent: PaymentIntent = await sapliy.paymentIntents.create({
   amount: 1000,
-  currency: 'usd'
+  currency: "usd",
 });
 ```
 
@@ -150,8 +150,8 @@ Use idempotency keys to safely retry requests:
 
 ```js
 const intent = await sapliy.paymentIntents.create(
-  { amount: 1000, currency: 'usd' },
-  { idempotencyKey: 'unique-request-id-123' }
+  { amount: 1000, currency: "usd" },
+  { idempotencyKey: "unique-request-id-123" },
 );
 ```
 

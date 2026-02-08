@@ -20,23 +20,23 @@ features:
   - icon: 🧩
     title: Zone-Based Isolation
     details: Separate test and live environments with dedicated API keys, logs, and flows. Experiment safely without affecting production.
-    
+
   - icon: ⚡
     title: Event-Driven Architecture
     details: Everything is an event. Trigger flows from SDKs, webhooks, schedules, or external providers like Stripe and PayPal.
-    
+
   - icon: 🔄
     title: Visual Flow Builder
     details: Build automation flows with drag-and-drop. Connect events to conditions, approvals, and actions without writing code.
-    
+
   - icon: 🔐
     title: Policy Engine
     details: Define who can do what with flexible policies. From simple role-based rules to complex conditional logic.
-    
+
   - icon: 💳
     title: Payment Processing
     details: Accept payments, manage wallets, and track transactions with a built-in ledger. Multi-currency support included.
-    
+
   - icon: 📊
     title: Real-Time Observability
     details: Monitor flows, debug events, and replay webhooks. Full visibility into every automation execution.
@@ -45,15 +45,15 @@ features:
 ## Quick Example
 
 ```js
-import Sapliy from '@sapliyio/fintech-sdk-node';
+import Sapliy from "@sapliyio/fintech";
 
-const sapliy = new Sapliy('sk_test_xxx');
+const sapliy = new Sapliy("sk_test_xxx");
 
 // Emit an event
-await sapliy.events.emit('checkout.completed', {
-  orderId: 'order_123',
+await sapliy.events.emit("checkout.completed", {
+  orderId: "order_123",
   amount: 9900,
-  currency: 'USD'
+  currency: "USD",
 });
 
 // This event can trigger flows in the visual builder!
@@ -65,12 +65,12 @@ await sapliy.events.emit('checkout.completed', {
 Organization → Zone → Event → Flow → Action
 ```
 
-| Concept | Purpose |
-|---------|---------|
-| **Organization** | Owns everything, has users/teams/policies |
-| **Zone** | Isolated automation space with test/live modes |
-| **Event** | The universal trigger (SDK, UI, providers) |
-| **Flow** | Automation logic connecting events to actions |
+| Concept          | Purpose                                        |
+| ---------------- | ---------------------------------------------- |
+| **Organization** | Owns everything, has users/teams/policies      |
+| **Zone**         | Isolated automation space with test/live modes |
+| **Event**        | The universal trigger (SDK, UI, providers)     |
+| **Flow**         | Automation logic connecting events to actions  |
 
 [View System Architecture](https://github.com/sapliy/fintech-ecosystem/blob/main/ARCHITECTURE.md)
 

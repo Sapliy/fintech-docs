@@ -12,7 +12,7 @@ Get up and running with Sapliy in under 5 minutes.
 ::: code-group
 
 ```bash [npm]
-npm install @sapliyio/fintech-sdk-node
+npm install @sapliyio/fintech
 ```
 
 ```bash [pip]
@@ -44,16 +44,16 @@ Zones are isolated environments for your automation flows.
 ::: code-group
 
 ```js [Node.js]
-import Sapliy from '@sapliyio/fintech-sdk-node';
+import Sapliy from "@sapliyio/fintech";
 
-const sapliy = new Sapliy('sk_test_xxx');
+const sapliy = new Sapliy("sk_test_xxx");
 
 const zone = await sapliy.zones.create({
-  name: 'My First Zone',
-  mode: 'test'
+  name: "My First Zone",
+  mode: "test",
 });
 
-console.log('Zone created:', zone.id);
+console.log("Zone created:", zone.id);
 ```
 
 ```python [Python]
@@ -89,13 +89,13 @@ fmt.Println("Zone created:", zone.ID)
 Events are the triggers for all automation flows.
 
 ```js
-await sapliy.events.emit('checkout.completed', {
-  orderId: 'order_abc123',
+await sapliy.events.emit("checkout.completed", {
+  orderId: "order_abc123",
   amount: 4999,
-  currency: 'USD',
+  currency: "USD",
   customer: {
-    email: 'customer@example.com'
-  }
+    email: "customer@example.com",
+  },
 });
 ```
 

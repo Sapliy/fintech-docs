@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-pip install sapliy
+pip install sapliyio_fintech
 ```
 
 ## Usage

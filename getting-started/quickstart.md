@@ -16,7 +16,7 @@ npm install @sapliyio/fintech
 ```
 
 ```bash [pip]
-pip install sapliy
+pip install sapliyio_fintech
 ```
 
 ```bash [go]

@@ -39,6 +39,9 @@ export default defineConfig({
                 {
                     text: 'Core Concepts',
                     items: [
+                        { text: 'Why Sapliy? (vs n8n)', link: '/concepts/comparison' },
+                        { text: 'Core Features', link: '/concepts/features' },
+                        { text: 'Security & PBAC', link: '/concepts/security' },
                         { text: 'Organizations', link: '/concepts/organizations' },
                         { text: 'Zones', link: '/concepts/zones' },
                         { text: 'Events', link: '/concepts/events' },
@@ -68,7 +71,8 @@ export default defineConfig({
                     items: [
                         { text: 'Flow Builder', link: '/automation/flow-builder' },
                         { text: 'Triggers', link: '/automation/triggers' },
-                        { text: 'Actions', link: '/automation/actions' }
+                        { text: 'Actions', link: '/automation/actions' },
+                        { text: 'Integration Guides', link: '/guides/integrations' }
                     ]
                 },
                 {

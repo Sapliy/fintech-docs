@@ -43,4 +43,4 @@ Once validated, toggle the flow to **Live Mode**. It will now respond to real pr
 
 ---
 
-[View Advanced Guide](/concepts/flow-engine) | [SDK Reference](/sdk/node)
+[View Advanced Guide](/concepts/flows) | [SDK Reference](/sdks/node)

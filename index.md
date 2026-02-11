@@ -76,6 +76,7 @@ Organization → Zone → Event → Flow → Action
 
 <div class="tip custom-block">
 
-Ready to build? Follow the [Quick Start Guide](/getting-started/quickstart) to create your first zone and trigger events in minutes.
+Ready to build? Check out [Why Sapliy?](/concepts/comparison) to see how we compare to n8n, then follow the [Quick Start Guide](/getting-started/quickstart) to create your first zone.
+
 
 </div>

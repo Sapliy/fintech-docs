@@ -23,6 +23,9 @@ docs/
 │   ├── authentication.md
 │   └── test-vs-live.md
 ├── concepts/
+│   ├── comparison.md    # Sapliy vs n8n
+│   ├── features.md      # Core Technical Features
+│   ├── security.md      # PBAC & Access Control
 │   ├── organizations.md
 │   ├── zones.md
 │   ├── events.md
@@ -39,7 +42,8 @@ docs/
 ├── automation/
 │   ├── flow-builder.md
 │   ├── triggers.md
-│   └── actions.md
+│   ├── actions.md
+│   └── integrations.md  # 3rd Party Integrations
 └── reference/
     ├── errors.md
     └── rate-limits.md

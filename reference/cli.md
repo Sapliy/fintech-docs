@@ -10,6 +10,11 @@ npm install -g @sapliyio/sapliy-cli
 
 # Via Homebrew (macOS)
 brew install sapliy/tap/sapliy
+
+# From Source (Local)
+# Navigate to sapliy-cli directory
+make build
+sudo make install
 ```
 
 ## Global Commands

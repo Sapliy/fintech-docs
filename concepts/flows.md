@@ -10,9 +10,14 @@ Every flow has three parts:
 Trigger → Logic → Action(s)
 ```
 
-1. **Trigger** — What starts the flow (event type, schedule, webhook)
-2. **Logic** — Conditions, filters, approvals
-3. **Actions** — What happens (webhooks, notifications, API calls)
+## The Flow Execution Engine
+
+When a flow is triggered, the **Flow Service** translates the visual graph into a structured execution plan (JSON/DAG). This plan is sent to the **Flow Runner**, a high-performance, stateless Go service that:
+
+1.  **Node Sandboxing**: Executes each node in an isolated context.
+2.  **Stateless Scaling**: Multiple runners can process steps of the same flow concurrently.
+3.  **State Management**: Flow-level variables are managed via Redis between asynchronous nodes (like approvals or delays).
+4.  **Atomic Auditing**: Persists every transition and node result to the database, ensuring zero-loss automation.
 
 ## Creating Flows
 

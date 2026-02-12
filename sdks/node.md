@@ -11,28 +11,32 @@ npm install @sapliyio/fintech
 ## Quick Start
 
 ```js
-import Sapliy from "@sapliyio/fintech";
+import { SapliyClient } from "@sapliyio/fintech";
 
-const sapliy = new Sapliy("sk_test_xxx");
+// Initialize with your secret key and endpoint (optional, defaults to localhost:8080)
+const sapliy = new SapliyClient("sk_test_xxx", "https://api.sapliy.io");
 
-// Create a payment intent
-const intent = await sapliy.paymentIntents.create({
-  amount: 2000,
-  currency: "usd",
+// Emit a business event
+await sapliy.events.emit("checkout.completed", {
+  orderId: "order_123",
+  amount: 9900,
+  currency: "USD",
 });
-
-console.log(intent.clientSecret);
 ```
 
 ## Configuration
 
+The `SapliyClient` provides access to all sub-services:
+- `sapliy.auth` - User and session management
+- `sapliy.payments` - Payment intents and charges
+- `sapliy.wallets` - Virtual wallet management
+- `sapliy.ledger` - Double-entry accounting
+- `sapliy.flows` - Automation flow management
+- `sapliy.zones` - Logical zone isolation
+- `sapliy.notifications` - Email, SMS, Slack delivery
+
 ```js
-const sapliy = new Sapliy("sk_test_xxx", {
-  apiVersion: "2024-01-01",
-  timeout: 30000,
-  maxRetries: 3,
-  baseUrl: "https://api.sapliy.io", // Override for self-hosted
-});
+const sapliy = new SapliyClient("sk_test_xxx", "https://api.sapliy.io");
 ```
 
 ## API Reference
@@ -40,10 +44,9 @@ const sapliy = new Sapliy("sk_test_xxx", {
 ### Payments
 
 #### Create Payment Intent
-
 ```js
-const intent = await sapliy.paymentIntents.create({
-  amount: 5000, // Amount in cents
+const intent = await sapliy.payments.createPaymentIntent({
+  amount: 5000,
   currency: "usd",
   metadata: { orderId: "order_123" },
 });

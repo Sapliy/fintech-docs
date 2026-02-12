@@ -8,23 +8,25 @@ Sapliy acts as a central nervous system for your fintech stack. We offer first-c
 2.  **Orchestration**: Trigger workflows *after* the payment, not just within the payment callback.
 3.  **Resilience**: Sapliy handles retries and failures so you don't lose webhooks.
 
-## Payment Providers
+## Official Connectors
 
-### Stripe
-- **Webhook Handling**: We verify Stripe signatures automatically.
-- **Actions**:
-    - Create Customer
-    - Create PaymentIntent
-    - Capture Charge
-    - Issue Refund
+Sapliy includes pre-built connectors for the most common services. These connectors handle authentication, signature verification, and data normalization.
 
-### PayPal
-- **Integration**: Link your PayPal business account.
-- **Flows**: Listen for `BILLING.SUBSCRIPTION.ACTIVATED`.
+### Payment Gateways
+- **Stripe**: Full lifecycle support from intent to refund.
+- **PayPal**: Billing agreements and subscription tracking.
+- **Square**: Retail and e-commerce payment integration.
+- **Paymob**: MENA-focused mobile wallet and kiosk payments.
 
-### Paymob
-- **Regional Support**: Deep integration for MENA region payments.
-- **Kiosk/Wallet**: Support for mobile wallet triggers.
+### Communication & Alerts
+- **Slack**: Channel notifications and interactive buttons.
+- **Twilio**: SMS and WhatsApp delivery.
+- **SendGrid**: Transactional email templates.
+- **PagerDuty**: Critical incident escalation from financial anomalies.
+
+### Monitoring
+- **Datadog**: Trace flow performance and error rates.
+
 
 ## Service Integration Pattern
 

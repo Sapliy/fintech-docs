@@ -9,10 +9,11 @@ Event → Flow → Action
 ```
 
 When an event is emitted, Sapliy:
-1. Records the event in the zone's history
-2. Matches it against active flows
-3. Executes any triggered flows
-4. Logs all actions for audit
+1.  **Ingestion**: Validates the signature and records the event in the zone's history.
+2.  **Broadcasting**: Pushes the event to the **Sapliy Event Bus** (Kafka/Redpanda).
+3.  **Matching**: The **Flow Service** identifies all active flows in that zone subscribed to the event type.
+4.  **Execution**: Triggers the **Flow Runner** to process each matched flow asynchronously.
+5.  **Audit**: Logs the entire lifecycle in the immutable ledger.
 
 ## Emitting Events
 

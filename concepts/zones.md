@@ -1,6 +1,6 @@
 # Zones
 
-Zones are the core isolation primitive in Sapliy. Think of them as separate environments where you can safely build and test automation flows.
+Zones are the core isolation primitive in Sapliy. At the database level, Sapliy implements a strict multi-tenant architecture where every resource is partitioned by a `zone_id`. The Sapliy **Zone Manager** service enforces this isolation at the application layer, ensuring that data, security keys, and execution contexts for "Test" and "Live" modes never intersect.
 
 ## What is a Zone?
 
@@ -9,6 +9,15 @@ A Zone combines:
 - **API Keys** — Separate secret and publishable keys
 - **Mode** — Either `test` or `live`
 - **Flows** — Automation workflows scoped to the zone
+
+## The Flow Execution Engine
+
+When a flow is triggered, the **Flow Service** translates the visual graph into a structured execution plan. This plan is sent to the **Flow Runner**, a high-performance Go service that:
+
+1.  **Strict Isolation**: Executes each node in a dedicated sandbox.
+2.  **Stateless Execution**: Each step is independent; state is persisted to Redis/PostgreSQL between nodes if necessary.
+3.  **Audit Persistence**: Automatically records inputs and outputs for every node to the immutable ledger.
+
 - **Events** — Event history and logs
 - **Configuration** — Webhook endpoints, policies, settings
 
@@ -86,6 +95,13 @@ Events are always scoped to a zone. This means:
 
 1. Events in test zones don't affect live zones
 2. Flows only trigger from events in their zone
+
+### Internal vs External Events
+- **External Events**: Emitted by your applications via SDKs or received from third-party hooks (Stripe, PayPal).
+- **Internal Events**: System-generated events like `flow.execution.started` or `zone.created` that can trigger meta-automation.
+
+### The Event Bus
+Once emitted, events are pushed to the **Sapliy Event Bus** (backed by Kafka/Redpanda). This decoupled architecture allows Sapliy to handle massive spikes in event volume without impacting the response time of your application.
 3. Logs and history are isolated
 
 ```js

@@ -17,29 +17,24 @@ hero:
       link: https://github.com/sapliy/fintech-ecosystem
 
 features:
-  - icon: 🧩
-    title: Zone-Based Isolation
-    details: Separate test and live environments with dedicated API keys, logs, and flows. Experiment safely without affecting production.
-
+  - icon: 🏗️
+    title: Micro-Tenant Isolation
+    details: Hardware-level separation and database-level partitioning ensure your "Live" and "Test" zones never leak data.
   - icon: ⚡
-    title: Event-Driven Architecture
-    details: Everything is an event. Trigger flows from SDKs, webhooks, schedules, or external providers like Stripe and PayPal.
-
-  - icon: 🔄
-    title: Visual Flow Builder
-    details: Build automation flows with drag-and-drop. Connect events to conditions, approvals, and actions without writing code.
-
-  - icon: 🔐
-    title: Policy Engine
-    details: Define who can do what with flexible policies. From simple role-based rules to complex conditional logic.
-
-  - icon: 💳
-    title: Payment Processing
-    details: Accept payments, manage wallets, and track transactions with a built-in ledger. Multi-currency support included.
-
-  - icon: 📊
-    title: Real-Time Observability
-    details: Monitor flows, debug events, and replay webhooks. Full visibility into every automation execution.
+    title: High-Performance Event Bus
+    details: Backed by Kafka, Sapliy Normalizes business events from any SDK, CLI, or Provider into a unified stream.
+  - icon: ⚙️
+    title: Stateless Flow Engine
+    details: A Go-based engine executes nodes in parallel sandboxes. Automate complex financial logic with zero-loss durability.
+  - icon: 🛡️
+    title: Policy-Based Access (PBAC)
+    details: Modular security using OPA/Rego and dynamic JSON policies. Enforce fine-grained rules on every API call.
+  - icon: 🧩
+    title: Extensible Service Catalog
+    details: Integrate Stripe, PayPal, and Paymob out of the box. Or build custom Go connectors for your own services.
+  - icon: 💻
+    title: Developer-First Experience
+    details: Use the unified CLI to bridge cloud events to your local server. SDKs for Node, Go, and Python included.
 ---
 
 ## Quick Example

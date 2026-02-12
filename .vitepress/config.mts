@@ -14,12 +14,14 @@ export default defineConfig({
 
         nav: [
             { text: 'Guide', link: '/getting-started/quickstart' },
+            { text: 'Architecture', link: '/concepts/architecture' },
             { text: 'API', link: '/api/overview' },
             { text: 'SDKs', link: '/sdks/node' },
             {
                 text: 'Resources',
                 items: [
-                    { text: 'Examples', link: '/examples/checkout' },
+                    { text: 'CLI Reference', link: '/reference/cli' },
+                    { text: 'Nodes Reference', link: '/reference/nodes' },
                     { text: 'Automation', link: '/automation/flow-builder' },
                     { text: 'Reference', link: '/reference/errors' }
                 ]
@@ -40,12 +42,21 @@ export default defineConfig({
                     text: 'Core Concepts',
                     items: [
                         { text: 'Why Sapliy? (vs n8n)', link: '/concepts/comparison' },
+                        { text: 'Architecture', link: '/concepts/architecture' },
                         { text: 'Core Features', link: '/concepts/features' },
-                        { text: 'Security & PBAC', link: '/concepts/security' },
                         { text: 'Organizations', link: '/concepts/organizations' },
                         { text: 'Zones', link: '/concepts/zones' },
                         { text: 'Events', link: '/concepts/events' },
-                        { text: 'Flows', link: '/concepts/flows' }
+                        { text: 'Flows', link: '/concepts/flows' },
+                        { text: 'Security & PBAC', link: '/concepts/security' }
+                    ]
+                },
+                {
+                    text: 'Guides & PBAC',
+                    items: [
+                        { text: 'Integration Guides', link: '/guides/integrations' },
+                        { text: 'Configuring PBAC', link: '/guides/pbac-config' },
+                        { text: 'Build Your First Flow', link: '/guides/first-flow' }
                     ]
                 },
                 {
@@ -67,17 +78,10 @@ export default defineConfig({
                     ]
                 },
                 {
-                    text: 'Automation',
-                    items: [
-                        { text: 'Flow Builder', link: '/automation/flow-builder' },
-                        { text: 'Triggers', link: '/automation/triggers' },
-                        { text: 'Actions', link: '/automation/actions' },
-                        { text: 'Integration Guides', link: '/guides/integrations' }
-                    ]
-                },
-                {
                     text: 'Reference',
                     items: [
+                        { text: 'CLI Reference', link: '/reference/cli' },
+                        { text: 'Nodes Reference', link: '/reference/nodes' },
                         { text: 'Error Codes', link: '/reference/errors' },
                         { text: 'Rate Limits', link: '/reference/rate-limits' }
                     ]

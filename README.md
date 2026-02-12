@@ -14,7 +14,7 @@ A comprehensive documentation hub covering:
 - **Tutorials** — Step-by-step walkthroughs
 - **Examples** — Real-world integrations
 
-## Planned Structure
+## Project Structure
 
 ```
 docs/
@@ -23,28 +23,31 @@ docs/
 │   ├── authentication.md
 │   └── test-vs-live.md
 ├── concepts/
-│   ├── comparison.md    # Sapliy vs n8n
-│   ├── features.md      # Core Technical Features
-│   ├── security.md      # PBAC & Access Control
+│   ├── architecture.md  # System Design & Microservices
+│   ├── comparison.md    # Sapliy vs n8n / Zapier
+│   ├── features.md      # Core Platform Features
+│   ├── security.md      # Security & Access Control
 │   ├── organizations.md
 │   ├── zones.md
 │   ├── events.md
 │   └── flows.md
+├── guides/
+│   ├── integrations.md  # 3rd Party Connectors
+│   ├── pbac-config.md   # Configuring OPA/JSON Policies
+│   └── first-flow.md    # Step-by-step Tutorial
 ├── sdks/
 │   ├── node.md
 │   ├── python.md
 │   └── go.md
 ├── api/
+│   ├── overview.md
 │   ├── payments.md
 │   ├── wallets.md
 │   ├── ledger.md
 │   └── webhooks.md
-├── automation/
-│   ├── flow-builder.md
-│   ├── triggers.md
-│   ├── actions.md
-│   └── integrations.md  # 3rd Party Integrations
 └── reference/
+    ├── cli.md          # Sapliy CLI Command Ref
+    ├── nodes.md        # Automation Nodes Ref
     ├── errors.md
     └── rate-limits.md
 ```
@@ -68,9 +71,11 @@ Documentation contributions are welcome. See [CONTRIBUTING.md](https://github.co
 
 ## Architecture
 
-Key concepts: Organization → Zone → Event → Flow → Action.
+Sapliy is built as a high-performance event-driven ecosystem. 
 
-See [ARCHITECTURE.md](https://github.com/sapliy/fintech-ecosystem/blob/main/ARCHITECTURE.md) for details.
+- **Concepts**: [Architecture Overview](/concepts/architecture)
+- **Deep Dive**: [ARCHITECTURE.md](https://github.com/sapliy/fintech-ecosystem/blob/main/ARCHITECTURE.md)
+
 
 ## License
 

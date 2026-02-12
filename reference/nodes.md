@@ -1,63 +1,89 @@
 # Automation Nodes Reference
 
-Sapliy's Flow Builder uses modular nodes to define automation logic. Every node belongs to one of three categories: **Triggers**, **Logic**, or **Actions**.
+Sapliy's Flow Builder uses modular nodes to define automation logic. Every node belongs to one of four categories: **Triggers**, **Logic**, **Actions**, or **Utilities**.
 
 ## Triggers
 
-### Event Trigger
-The entry point for most flows.
-- **Config**: `eventType` (e.g., `payment.succeeded`).
-- **Data**: The entire event payload is available to downstream nodes.
+### Event Trigger (`eventTrigger`)
+Starts the flow when a specific system or external event occurs.
+- **Configuration**:
+  - `source`: The origin of the event (Internal, Stripe, PayPal, etc.)
+  - `eventType`: The exact event string to match (e.g., `payment.succeeded`)
+  - `isActive`: Boolean to enable/disable the trigger.
+- **Data**: Exposes the `lastEvent` payload to downstream nodes.
 
-### Schedule Trigger
-Runs flows on a periodic basis.
-- **Config**: Cron expression (e.g., `0 0 * * *`).
+### Date & Time (`dateTime`)
+Executes flows based on a specific schedule or time of day.
+- **Configuration**:
+  - `time`: HH:mm format for execution.
+  - `date`: Specific YYYY-MM-DD for one-time triggers.
+  - `repeat`: Boolean for recurring execution.
+  - `activeDays`: Array of numbers (0-6) for weekly schedules.
+  - `isActive`: Enable or disable the schedule.
+- **Insights**: Indicates `isDaytime` vs `Nighttime` and shows `Next Trigger` time.
 
 ## Logic Nodes
 
-### Condition Node
-Branch the flow based on data values.
-- **Operators**: `equals`, `not_equals`, `greater_than`, `less_than`, `contains`, `regex`.
-::: v-pre
-- **Expression**: `{{ event.data.amount }} > 1000`
-:::
+### Condition (`condition`)
+Branch the flow using logical expressions.
+- **Operators**: `==`, `!=`, `>=`, `<=`, `>`, `<`, `contains`, `regex`, `starts_with`.
+- **Logic**: Routes to `outputTruePath` or `outputFalsePath`.
 
+### Filter (`filter`)
+Stops execution if the event data doesn't meet specific criteria.
+- **Field**: `filterValue` vs `valueType` (text/number).
 
-### Filter Node
-Stops the flow execution if criteria aren't met.
-- **Use Case**: Only process events for specific currencies or regions.
+### Timeout (`timeout`)
+Pauses execution for a specified duration.
+- **Configuration**: `duration` (number of minutes/hours), `remainingTime` display.
 
-### Approval Node
-Pauses the flow and waits for manual intervention from the Sapliy Dashboard.
-- **Config**: `assignees`, `timeout` (e.g., `48h`), `notification_channel`.
-- **Result**: Flow resumes with `approved` or `rejected` status.
+### Approval (`approval`)
+Requires human intervention before proceeding.
+- **Configuration**:
+  - `approverRole`: `admin`, `finance`, `manager`, or `any`.
+  - `timeoutHours`: Time before the approval expires (defaults to `pending`).
+  - `message`: Context shown to the approver.
+- **Status**: Tracks `idle` → `pending` → `approved`/`rejected`.
 
-### AI Analysis Node
-Uses localized LLMs to analyze event data and make a decision.
-- **Use Case**: Detecting suspicious patterns in unstructured checkout data.
-
-### Wait / Timeout Node
-Pauses execution for a specified duration or until a deadline.
-- **Config**: `duration` (e.g., `10m`, `1h`).
-
-### Rate Limit Node
-Prevents a flow from executing too frequently for the same user or entity.
-- **Config**: `limit`, `window` (e.g., 5 requests per minute).
+### Rate Limit (`rateLimit`)
+Prevents automation abuse or excessive API calls.
+- **Configuration**:
+  - `limit`: Max executions allowed.
+  - `timeWindow`: Duration of the limit.
+  - `timeUnit`: `second`, `minute`, `hour`, `day`.
+  - `burstAllowance`: Overflow capacity.
 
 ## Action Nodes
 
-### Webhook Node
-Send a signed HTTP request to an external system.
-- **Security**: Includes `X-Sapliy-Signature` for verification.
-- **Config**: URL, Method, Headers, Body (supports templates).
+### Webhook (`webhook`)
+Sends an HTTP request to an external endpoint.
+- **Configuration**:
+  - `url`: Destination endpoint.
+  - `method`: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
+  - `headers`: Key-value pairs for authentication/metadata.
+  - `body`: JSON payload (supports template interpolation).
+- **Audit**: Stores `lastResponse` (status code and body).
 
-### Notification Node
-Send alerts via pre-configured channels.
-- **Channels**: Email (SendGrid), Slack, Twilio (SMS), PagerDuty.
+### Notification (`notification`)
+Sends alerts through first-party integrations.
+- **Channels**: `whatsapp`, `email`, `slack`, `discord`, `sms`.
+- **Field**: `recipient` and `template` identifier.
 
-### Ledger Node
-Records a transaction or audit entry in the internal ledger.
-- **Fields**: `debit`, `credit`, `description`, `reference_id`.
+### Audit Log (`auditLog`)
+Records an immutable entry in the Sapliy ledger.
+- **Fields**:
+  - `action`: Unique name for the audit point.
+  - `severity`: `info`, `warning`, `error`, `critical`.
+  - `description`: Human-readable summary (supports templates).
+  - `metadata`: Key-value pairs indexed for search.
 
-### Debugger Node
-Logs the current flow state and variables to the Sapliy CLI for real-time monitoring.
+## Utilities
+
+### AI Analysis (`ai-analysis`)
+Analyzes event data using AI models to make contextual decisions.
+- **Field**: `instruction` (prompt) and `result` (output).
+
+### Debugger (`debugger`)
+Logs flow state and variable values for real-time monitoring.
+- **Configuration**: `logLevel` (info, warning, error), `autoScroll`.
+- **View**: Real-time log stream within the node.

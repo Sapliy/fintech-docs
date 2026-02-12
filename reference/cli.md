@@ -18,61 +18,61 @@ brew install sapliy/tap/sapliy
 - `sapliy logout`: Clear your local credentials.
 - `sapliy version`: Check the current CLI version.
 
-## Zone Management
+## Zone Management (`sapliy zones`)
 
-- `sapliy zones list`: List all zones in your organization.
-- `sapliy zones switch <id>`: Set the active zone for following commands.
-- `sapliy zones create --name <name> --mode <test|live>`: Create a new zone.
+Manage the logical isolation of your environments.
 
-## Event Triggers
+- `list`: List all zones in your organization.
+- `create --name <name> [--mode test|live]`: Create a new zone (defaults to `test`).
+- `switch <id>`: Set the active zone for all subsequent commands.
 
-Manually emit events to test your flows without writing code.
+## Debugging & Inspection (`sapliy debug`)
 
-```bash
-# Trigger an event in the active zone
-sapliy trigger payment.succeeded --data '{"amount": 5000, "currency": "USD"}'
+Monitor automation flows as they execute in real-time.
 
-# Trigger in a specific zone
-sapliy trigger user.signup --zone zone_abc123
-```
+### `listen`
+Stream events in real-time via WebSocket.
+- **Flags**:
+  - `-z, --zone <id>`: Filter events by a specific zone.
+  - `-v, --verbose`: Show full event JSON payloads.
+  - `-f, --filter <type>`: Substring filter for event types (e.g., `payment.*`).
 
-## Debugging & Local Development
+### `inspect <flow_execution_id>`
+Get detailed logs and node transitions for a specific execution.
 
-The most powerful feature of the CLI is bridging cloud automation to your local machine.
+### `repl`
+Start an interactive shell to test events and zones.
+- **Internal Commands**:
+  - `emit <type> [json]`: Manually trigger an event.
+  - `zone <id>`: Switch the active zone context within the REPL.
+  - `status`: Show current API key and endpoint configuration.
 
-### `sapliy debug listen`
-Listen to all incoming events and flow executions in real-time.
+## Event Connectivity (`sapliy connect`)
 
-```bash
-# Watch production events (requires live key)
-sapliy debug listen --zone prod --verbose
-```
+Bridge the Sapliy Event Bus to your local machine.
 
-### `sapliy connect`
-Bridge events to your local server. This is essential for testing webhooks without using ngrok.
+- `sapliy connect [url]`: Connect to a specific WebSocket endpoint (defaults to `ws://localhost:8080/ws`).
+- **Flags**:
+  - `-k, --key <api_key>`: Provide an API key for authentication.
+  - `-t, --trigger <payload>`: Send a JSON event payload immediately upon connection.
 
-```bash
-# Forward all 'checkout' events to your local dev server
-sapliy connect --event checkout.* --to http://localhost:3000/webhooks
-```
+## Webhook Management (`sapliy webhooks`)
 
-## Template Management
+Monitor and resend external webhook deliveries.
 
-Apply pre-built industry standard flows to your zones.
+- `list [--limit <n>] [--status <type>] [--zone <id>]`: List recent webhook delivery attempts.
+- `inspect <event_id>`: View the full request/response cycle for a specific delivery.
+- `replay <event_id> [--force]`: Resend a specific webhook to its endpoint.
+- `replay-failed [--since <time>] [--dry-run]`: Bulk replay failed webhooks from the last `1h`, `24h`, etc.
 
-```bash
-# List available templates
-sapliy templates list
+## Zone Templates (`sapliy templates`)
 
-# Apply a template to a zone
-sapliy templates apply financial-fraud --zone dev
-```
+Apply pre-configured industry standards to your zones.
 
-## Advanced
+- `list`: Browse available templates (e.g., `e-commerce`, `saas-billing`).
+- `show <name>`: Inspect the flows, webhooks, and events included in a template.
+- `apply <name> [--zone-name <name>] [--mode <mode>] [--dry-run]`: Setup a new zone with the template configuration.
 
-### `sapliy run`
-Execute a local flow definition against the cloud engine (useful for CI/CD).
+## Flow Execution (`sapliy run`)
 
-```bash
-sapliy run ./my-flow.json --zone test
-```
+- `sapliy run <file.json> [--zone <id>]`: Execute a local flow definition against the cloud engine.

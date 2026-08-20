@@ -33,7 +33,7 @@ await sapliy.emit("checkout.completed", { amount: 100 });
 
 ## 2. Safe by Design: Zones
 
-Fintech requires safety. You can't accidentally run a test transaction on a live production database.
+Financial operations require safety. You can't accidentally run a test transaction on a live production database.
 
 **Sapliy enforces isolation:**
 - **Test Mode**: Operations differ by API key (`sk_test_...`). Events here *cannot* trigger Live flows.

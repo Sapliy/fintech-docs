@@ -1,6 +1,6 @@
 # Third-Party Integrations
 
-Sapliy acts as a central nervous system for your fintech stack. We offer first-class support for major payment providers and services.
+Sapliy acts as a central nervous system for your financial operations stack. We offer first-class support for major payment providers and services.
 
 ## Why Integrate via Sapliy?
 

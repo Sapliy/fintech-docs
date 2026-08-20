@@ -49,7 +49,7 @@ allow {
 ## Deploying Policies
 
 ### Self-Hosted
-Mount your policy files into the `fintech-ecosystem` container:
+Mount your policy files into the `sapliy-ecosystem` container:
 
 ```yaml
 # docker-compose.yml

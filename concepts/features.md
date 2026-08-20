@@ -1,6 +1,6 @@
 # Core Features
 
-Sapliy provides a robust set of features designed for building scalable, secure fintech applications.
+Sapliy provides a robust set of features designed for building scalable, secure financial operations applications.
 
 ## 1. Zone Management (Test / Live)
 

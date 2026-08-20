@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-    title: 'Sapliy Fintech',
-    description: 'Event-driven automation & policy platform for fintech and business flows',
+    title: 'Sapliy',
+    description: 'AI-native Financial Operations Intelligence Layer — turn business goals into reliable, explainable, auditable financial outcomes.',
 
     head: [
         ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
@@ -14,6 +14,7 @@ export default defineConfig({
 
         nav: [
             { text: 'Guide', link: '/getting-started/quickstart' },
+            { text: 'Playbooks', link: '/playbooks/index' },
             { text: 'Architecture', link: '/concepts/architecture' },
             { text: 'API', link: '/api/overview' },
             { text: 'SDKs', link: '/sdks/node' },
@@ -39,6 +40,15 @@ export default defineConfig({
                     ]
                 },
                 {
+                    text: 'Operational Playbooks',
+                    items: [
+                        { text: 'Overview', link: '/playbooks/index' },
+                        { text: 'Revenue Recovery & Dunning', link: '/playbooks/revenue-recovery' },
+                        { text: 'Refund Approval Orchestration', link: '/playbooks/refund-approval' },
+                        { text: 'Audit Decision Log', link: '/playbooks/audit-decision-log' }
+                    ]
+                },
+                {
                     text: 'Core Concepts',
                     items: [
                         { text: 'Why Sapliy? (vs n8n)', link: '/concepts/comparison' },
@@ -52,11 +62,13 @@ export default defineConfig({
                     ]
                 },
                 {
-                    text: 'Guides & PBAC',
+                    text: 'Guides',
                     items: [
                         { text: 'Integration Guides', link: '/guides/integrations' },
                         { text: 'Configuring PBAC', link: '/guides/pbac-config' },
-                        { text: 'Build Your First Flow', link: '/guides/first-flow' }
+                        { text: 'Build Your First Flow', link: '/guides/first-flow' },
+                        { text: 'Model Context Protocol (MCP)', link: '/guides/mcp' },
+                        { text: 'Policy-as-Code', link: '/guides/policy-as-code' }
                     ]
                 },
                 {
@@ -90,7 +102,7 @@ export default defineConfig({
         },
 
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/sapliy/fintech-ecosystem' }
+            { icon: 'github', link: 'https://github.com/Sapliy/sapliy-ecosystem' }
         ],
 
         footer: {

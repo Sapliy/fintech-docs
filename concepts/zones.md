@@ -70,7 +70,7 @@ Available templates:
 - `e-commerce` — Checkout, payments, order tracking
 - `saas-billing` — Subscriptions, invoicing
 - `marketplace` — Multi-vendor, split payments
-- `fintech-basic` — Payments with fraud checks
+- `sapliy-basic` — Payments with fraud checks
 - `automation-hub` — Event automation without payments
 
 ## Switching Zones

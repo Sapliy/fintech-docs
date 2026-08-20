@@ -1,6 +1,6 @@
 # Node.js SDK
 
-The official Node.js SDK for Sapliy Fintech.
+The official Node.js SDK for Sapliy.
 
 ## Installation
 

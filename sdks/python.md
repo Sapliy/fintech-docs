@@ -3,14 +3,13 @@
 ## Installation
 
 ```bash
-pip install sapliyio_fintech
+pip install sapliyio-fintech
 ```
 
 ## Usage
 
 ```python
-import sapliy
+from sapliyio_fintech import SapliyClient
 
-client = sapliy.Client('sk_test_...')
-zone = client.zones.create(name='My Zone')
+client = SapliyClient('sk_test_...')
 ```

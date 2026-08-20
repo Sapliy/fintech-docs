@@ -16,11 +16,11 @@ npm install @sapliyio/fintech
 ```
 
 ```bash [pip]
-pip install sapliyio_fintech
+pip install sapliyio-fintech
 ```
 
 ```bash [go]
-go get github.com/sapliy/fintech-sdk-go
+go get github.com/sapliy/sapliy-sdk-go
 ```
 
 :::
@@ -57,29 +57,28 @@ console.log("Zone created:", zone.id);
 ```
 
 ```python [Python]
-import sapliy
+from sapliyio_fintech import SapliyClient, CreateZoneRequest
 
-client = sapliy.Client('sk_test_xxx')
+client = SapliyClient('sk_test_xxx')
 
-zone = client.zones.create(
-    name='My First Zone',
-    mode='test'
+zone = client.zones.create_zone(
+    CreateZoneRequest(name='My First Zone', mode='test')
 )
 
 print(f'Zone created: {zone.id}')
 ```
 
 ```go [Go]
-import fintech "github.com/sapliy/fintech-sdk-go"
+import sapliy "github.com/sapliy/sapliy-sdk-go"
 
-client := fintech.NewClient("sk_test_xxx")
+client := sapliy.NewClient("sk_test_xxx")
 
-zone, err := client.Zones.Create(ctx, &fintech.CreateZoneRequest{
-    Name: "My First Zone",
-    Mode: "test",
-})
+zone, err := client.Zones.Create(ctx, "org_abc123", "My First Zone", "test", "")
+if err != nil {
+    log.Fatal(err)
+}
 
-fmt.Println("Zone created:", zone.ID)
+fmt.Println("Zone created:", zone)
 ```
 
 :::
